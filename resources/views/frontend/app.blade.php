@@ -100,6 +100,21 @@
                         box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
+        /* ===== MOBILE RESPONSIVE GUARDS ===== */
+        html, body { max-width: 100%; overflow-x: hidden; }
+        img, svg, video, canvas, iframe { max-width: 100%; }
+        #skeleton-overlay { overflow-x: hidden; }
+        .sk-block, .sk-circle, .sk-line { max-width: 100%; }
+
+        /* Horizontal slide-ins only run on wide screens; on phones they move
+           on the vertical axis so they can never widen the page. */
+        @media (max-width: 767.98px) {
+            [data-aos="fade-left"],
+            [data-aos="fade-right"] { transform: translateY(30px) !important; }
+            [data-aos="fade-left"].aos-animate,
+            [data-aos="fade-right"].aos-animate { transform: none !important; }
+        }
+
         /* ===== SCROLL ANIMATIONS (AOS) ===== */
         [data-aos] {
             opacity: 0;

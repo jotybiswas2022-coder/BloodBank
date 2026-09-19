@@ -2,51 +2,97 @@
 
 @section('skeleton')
     {{-- ===== HOMEPAGE SKELETON ===== --}}
-    <div style="padding-top:72px;">
+    <div class="sk-page">
         {{-- Hero Skeleton --}}
-        <div style="background:rgba(255,255,255,0.02);padding:80px 20px;min-height:90vh;display:flex;align-items:center;">
-            <div style="max-width:1200px;margin:0 auto;width:100%;">
+        <div class="sk-hero">
+            <div class="sk-wrap">
                 <div style="margin-bottom:28px;">
                     <div class="sk-block" style="width:180px;height:32px;border-radius:50px;"></div>
                 </div>
-                <div class="sk-block" style="width:70%;height:48px;margin-bottom:16px;"></div>
-                <div class="sk-block" style="width:55%;height:48px;margin-bottom:24px;"></div>
+                <div class="sk-block sk-line-xl" style="width:70%;"></div>
+                <div class="sk-block sk-line-xl" style="width:55%;margin-bottom:24px;"></div>
                 <div class="sk-block" style="width:45%;height:20px;margin-bottom:16px;"></div>
                 <div class="sk-block" style="width:35%;height:20px;margin-bottom:36px;"></div>
-                <div style="display:flex;gap:16px;flex-wrap:wrap;">
-                    <div class="sk-block" style="width:180px;height:52px;border-radius:12px;"></div>
-                    <div class="sk-block" style="width:200px;height:52px;border-radius:12px;"></div>
+                <div class="sk-btn-row">
+                    <div class="sk-block sk-btn"></div>
+                    <div class="sk-block sk-btn"></div>
                 </div>
-                <div style="display:flex;gap:40px;margin-top:48px;padding-top:28px;border-top:1px solid rgba(255,255,255,0.05);">
-                    <div><div class="sk-block" style="width:80px;height:36px;margin-bottom:6px;"></div><div class="sk-block" style="width:100px;height:14px;"></div></div>
-                    <div><div class="sk-block" style="width:60px;height:36px;margin-bottom:6px;"></div><div class="sk-block" style="width:90px;height:14px;"></div></div>
-                    <div><div class="sk-block" style="width:70px;height:36px;margin-bottom:6px;"></div><div class="sk-block" style="width:80px;height:14px;"></div></div>
+                <div class="sk-stats">
+                    <div class="sk-stat"><div class="sk-block" style="width:100%;max-width:80px;height:36px;margin-bottom:6px;"></div><div class="sk-block" style="width:100%;max-width:100px;height:14px;"></div></div>
+                    <div class="sk-stat"><div class="sk-block" style="width:100%;max-width:60px;height:36px;margin-bottom:6px;"></div><div class="sk-block" style="width:100%;max-width:90px;height:14px;"></div></div>
+                    <div class="sk-stat"><div class="sk-block" style="width:100%;max-width:70px;height:36px;margin-bottom:6px;"></div><div class="sk-block" style="width:100%;max-width:80px;height:14px;"></div></div>
                 </div>
             </div>
         </div>
 
         {{-- Blood Groups Skeleton --}}
-        <div style="padding:80px 20px;background:linear-gradient(180deg,#fff,#fef2f2);">
-            <div style="max-width:1200px;margin:0 auto;">
-                <div style="text-align:center;margin-bottom:50px;">
+        <div class="sk-groups">
+            <div class="sk-wrap">
+                <div class="sk-head">
                     <div class="sk-block" style="width:140px;height:28px;margin:0 auto 18px;border-radius:50px;"></div>
-                    <div class="sk-block" style="width:300px;height:36px;margin:0 auto 14px;"></div>
-                    <div class="sk-block" style="width:400px;height:18px;margin:0 auto;"></div>
+                    <div class="sk-block" style="width:100%;max-width:300px;height:36px;margin:0 auto 14px;"></div>
+                    <div class="sk-block" style="width:100%;max-width:400px;height:18px;margin:0 auto;"></div>
                 </div>
-                <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:24px;">
+                <div class="sk-grid">
                     @for($i=0;$i<8;$i++)
-                    <div style="padding:32px 20px 28px;text-align:center;background:#fff;border-radius:20px;box-shadow:0 4px 20px rgba(0,0,0,0.04);">
-                        <div class="sk-circle" style="width:72px;height:72px;margin:0 auto 14px;"></div>
+                    <div class="sk-card">
+                        <div class="sk-circle sk-card-circle" style="width:72px;height:72px;margin:0 auto 14px;"></div>
                         <div class="sk-block" style="width:50px;height:24px;margin:0 auto 4px;"></div>
-                        <div class="sk-block" style="width:80px;height:12px;margin:0 auto 6px;"></div>
-                        <div class="sk-block" style="width:100px;height:14px;margin:0 auto 18px;"></div>
-                        <div class="sk-block" style="width:120px;height:36px;margin:0 auto;border-radius:10px;"></div>
+                        <div class="sk-block" style="width:70%;max-width:80px;height:12px;margin:0 auto 6px;"></div>
+                        <div class="sk-block" style="width:85%;max-width:100px;height:14px;margin:0 auto 18px;"></div>
+                        <div class="sk-block" style="width:100%;max-width:120px;height:36px;margin:0 auto;border-radius:10px;"></div>
                     </div>
                     @endfor
                 </div>
             </div>
         </div>
     </div>
+
+    <style>
+        /* Responsive homepage skeleton — mirrors the real layout on every width */
+        .sk-page { padding-top: 72px; }
+        .sk-hero { background: rgba(255,255,255,0.02); padding: 80px 20px; min-height: 90vh; display: flex; align-items: center; }
+        .sk-wrap { max-width: 1200px; margin: 0 auto; width: 100%; }
+        .sk-line-xl { height: 48px; margin-bottom: 16px; }
+        .sk-btn-row { display: flex; gap: 16px; flex-wrap: wrap; }
+        .sk-btn-row .sk-btn { width: 180px; height: 52px; border-radius: 12px; }
+        .sk-btn-row .sk-btn:last-child { width: 200px; }
+        .sk-stats { display: flex; gap: 40px; margin-top: 48px; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.05); flex-wrap: wrap; }
+        .sk-stat { flex: 1 1 70px; max-width: 110px; }
+        .sk-groups { padding: 80px 20px; background: linear-gradient(180deg,#fff,#fef2f2); }
+        .sk-head { text-align: center; margin-bottom: 50px; }
+        .sk-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+        .sk-card { padding: 32px 20px 28px; text-align: center; background: #fff; border-radius: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.04); }
+
+        @media (max-width: 991.98px) {
+            .sk-page { padding-top: 64px; }
+            .sk-hero { min-height: auto; padding: 60px 18px; }
+            .sk-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+            .sk-stats { gap: 30px; margin-top: 36px; }
+        }
+
+        @media (max-width: 767.98px) {
+            .sk-page { padding-top: 60px; }
+            .sk-hero { padding: 40px 18px; }
+            .sk-line-xl { height: 36px; }
+            .sk-btn-row .sk-btn, .sk-btn-row .sk-btn:last-child { width: 100%; height: 48px; }
+            .sk-stats { gap: 20px; margin-top: 30px; padding-top: 20px; }
+            .sk-head { margin-bottom: 30px; }
+            .sk-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+            .sk-card { padding: 24px 14px 20px; }
+            .sk-card-circle { width: 56px !important; height: 56px !important; }
+        }
+
+        @media (max-width: 480px) {
+            .sk-page { padding-top: 56px; }
+            .sk-hero { padding: 30px 14px; }
+            .sk-line-xl { height: 30px; }
+            .sk-groups { padding: 40px 14px; }
+            .sk-grid { gap: 10px; }
+            .sk-card { padding: 18px 10px 16px; border-radius: 14px; }
+            .sk-card-circle { width: 44px !important; height: 44px !important; }
+        }
+    </style>
 @endsection
 
 @section('content')
@@ -1594,8 +1640,11 @@
             .why-content h2 { font-size: 26px; }
             .why-content p { font-size: 15px; }
             .why-icon { width: 64px; height: 64px; font-size: 28px; }
+            .alert-success { margin: 16px; padding: 14px 18px; font-size: 13px; border-radius: 14px; }
             .contact-form-wrapper { padding: 28px 20px; border-radius: 18px; }
-            .form-group input, .form-group textarea { padding: 12px 16px; font-size: 14px; }
+            /* 16px keeps iOS Safari from zooming the page when a field is focused */
+            input, textarea, select { font-size: 16px !important; }
+            .form-group input, .form-group textarea { padding: 12px 16px; font-size: 16px; }
             .submit-btn { padding: 14px; font-size: 15px; }
             .emergency-card { padding: 24px 20px; }
             .emergency-card .phone { font-size: 22px; }
@@ -1607,6 +1656,18 @@
             .footer-links { gap: 20px; }
             .social-icons { justify-content: center; }
             .footer-bottom { flex-direction: column; text-align: center; }
+        }
+
+        @media (max-width: 575.98px) {
+            .hero .container, .blood-groups .container, .features .container,
+            .why-donate .container, .contact-section .container, .footer .container { padding: 0 16px; }
+            .hero h1 { font-size: 26px; }
+            .hero p { font-size: 14px; }
+            .hero-badge { font-size: 10.5px; letter-spacing: 1px; padding: 6px 12px; }
+            .blood-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+            .contact-grid { gap: 22px; }
+            .emergency-card .phone { font-size: 20px; margin-bottom: 12px; }
+            .footer-content { gap: 22px; }
         }
 
         @media (max-width: 480px) {
@@ -1631,7 +1692,7 @@
             .why-content h2 { font-size: 22px; }
             .contact-form-wrapper { padding: 20px 14px; border-radius: 14px; }
             .form-group label { font-size: 13px; }
-            .form-group input, .form-group textarea { padding: 11px 14px; font-size: 13px; }
+            .form-group input, .form-group textarea { padding: 12px 14px; font-size: 16px; }
             .submit-btn { font-size: 14px; padding: 12px; }
             .emergency-card .phone { font-size: 18px; }
             .footer-bottom p { font-size: 12px; }
