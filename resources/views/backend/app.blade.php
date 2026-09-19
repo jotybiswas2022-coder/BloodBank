@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>@yield('title', 'Laravel')</title>
+    <link rel="icon" type="image/x-icon" href="{{ url('favicon.ico') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url('favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url('favicon.png') }}">
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url('apple-touch-icon.png') }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
@@ -99,6 +103,58 @@ document.addEventListener('DOMContentLoaded', function() {
     @media (max-width: 575.98px) {
         .table-scroll-top { display: none; }
         .container-fluid { padding-left: 10px !important; padding-right: 10px !important; }
+    }
+
+    /* ===================== Mobile polish ===================== */
+    @media (max-width: 767.98px) {
+        /* Bootstrap's negative row gutters make rows wider than the screen on
+           phones; drop them here so every grid stays inside the viewport. */
+        .row {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            --bs-gutter-x: 1rem;
+        }
+
+        /* iOS zooms the whole page when a focused field is smaller than 16px */
+        #mainContent input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),
+        #mainContent select,
+        #mainContent textarea {
+            font-size: 16px !important;
+        }
+        #mainContent input::placeholder,
+        #mainContent textarea::placeholder { font-size: 0.95rem; }
+
+        /* comfortable touch targets */
+        #mainContent button,
+        #mainContent .btn { min-height: 42px; }
+        #mainContent button.btn-icon,
+        #mainContent a.btn-icon { min-width: 42px; }
+
+        /* page rhythm */
+        #mainContent { padding: 14px 12px 24px !important; }
+        #mainContent h4 { font-size: 1.3rem !important; line-height: 1.3; }
+        #mainContent h5 { font-size: 1.08rem !important; }
+        #mainContent .container-fluid { padding-left: 0 !important; padding-right: 0 !important; }
+
+        /* cards: softer radius, less inner padding, no heavy shadows */
+        #mainContent .card,
+        #mainContent [style*="border-radius:20px"],
+        #mainContent [style*="border-radius:24px"] { border-radius: 16px !important; }
+
+        /* tables scroll inside their own wrapper, never the page */
+        #mainContent .table-responsive,
+        #mainContent [style*="overflow:auto"],
+        #mainContent [style*="overflow-x:auto"] { -webkit-overflow-scrolling: touch; }
+        #mainContent table { font-size: 0.82rem; }
+
+        /* modal dialogs use the full width on phones */
+        .modal-dialog { margin: 0.6rem !important; }
+        .modal-body { padding: 16px !important; }
+        .modal-header, .modal-footer { padding: 14px 16px !important; }
+        .modal .btn { min-width: 44%; }
+
+        /* long headings/pills wrap instead of pushing the layout sideways */
+        #mainContent h1, #mainContent h2, #mainContent h3, #mainContent h4 { overflow-wrap: anywhere; }
     }
 </style>
 

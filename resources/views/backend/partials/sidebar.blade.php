@@ -15,9 +15,9 @@ $isActive = function($path) {
 
 {{-- Top Navbar --}}
 <nav style="background:#fff;border-bottom:1px solid rgba(0,0,0,0.05);padding:8px 16px;box-shadow:0 2px 16px rgba(0,0,0,0.04);position:sticky;top:0;z-index:1020;">
-    <div style="display:flex;align-items:center;justify-content:space-between;max-width:100%;">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;max-width:100%;min-height:48px;">
         <div style="display:flex;align-items:center;gap:10px;">
-            <button onclick="toggleSidebar()" style="background:none;border:none;font-size:1.5rem;color:#444;cursor:pointer;padding:4px;" class="d-md-none">
+            <button onclick="toggleSidebar()" aria-label="Open menu" style="background:none;border:none;font-size:1.6rem;color:#444;cursor:pointer;padding:0;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;" class="d-md-none">
                 <i class="bi bi-list"></i>
             </button>
             <a href="/admin" style="display:flex;align-items:center;gap:8px;text-decoration:none;">
@@ -43,7 +43,7 @@ $isActive = function($path) {
                 </span>
                 Admin Panel
             </span>
-            <button type="button" style="background:none;border:none;font-size:1.3rem;color:#999;cursor:pointer;padding:0;line-height:1;" data-bs-dismiss="offcanvas">&times;</button>
+            <button type="button" aria-label="Close menu" style="background:none;border:none;font-size:1.5rem;color:#999;cursor:pointer;padding:0;line-height:1;width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin:-6px -8px -6px 0;" data-bs-dismiss="offcanvas">&times;</button>
         </div>
         <div style="padding:8px 0;">
             @foreach($menuItems as $item)

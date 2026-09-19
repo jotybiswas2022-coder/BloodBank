@@ -56,6 +56,6 @@ class AccountController extends Controller
 
         $account->save();
 
-        return redirect()->back()->with('success', 'Account updated successfully!');
+        return redirect()->route('account.index')->with('success', 'Account updated successfully!');
     }
 }

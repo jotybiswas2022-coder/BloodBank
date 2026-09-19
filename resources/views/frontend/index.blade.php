@@ -1583,8 +1583,10 @@
             .hero { min-height: auto; padding: 60px 0; }
             .hero h1 { font-size: 36px; }
             .hero .container { flex-direction: column; text-align: center; gap: 30px; }
-            .hero-content { order: 2; }
-            .hero p { margin: 0 auto 28px; }
+            .hero-content { order: 2; width: 100%; }
+            .hero p { margin: 0 auto 28px; max-width: 100%; }
+            .hero-visual { width: 100%; }
+            .hero-buttons { width: 100%; }
             .hero-buttons { justify-content: center; }
             .hero-stats { justify-content: center; }
             .stat-item { text-align: center; }
