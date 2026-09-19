@@ -145,7 +145,7 @@
                                     @if($profile->last_donated)
                                         {{ \Carbon\Carbon::parse($profile->last_donated)->timezone('Asia/Dhaka')->format('d M Y') }}
                                     @else
-                                        <span class="text-muted">{{ __('এখনো দান করেননি') }}</span>
+                                        <span class="profile-muted">{{ __('এখনো দান করেননি') }}</span>
                                     @endif
                                 </span>
                             </div>
@@ -488,7 +488,7 @@
             gap: 8px;
             font-size: 12px;
             font-weight: 700;
-            color: rgba(255,255,255,0.35);
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 1.2px;
             margin-bottom: 18px;
@@ -544,7 +544,7 @@
         .info-label {
             font-size: 11px;
             font-weight: 600;
-            color: rgba(255,255,255,0.35);
+            color: #ffffff;
             text-transform: uppercase;
             letter-spacing: 0.8px;
         }
@@ -552,16 +552,18 @@
         .info-value {
             font-size: 15px;
             font-weight: 600;
-            color: #f5f5f5;
+            color: #ffffff;
             word-break: break-word;
         }
 
         .blood-value {
             font-size: 20px; font-weight: 800;
-            color: var(--primary-light);
+            color: #ffffff;
         }
 
-        .text-muted { color: rgba(255,255,255,0.3); }
+        /* Custom class (not Bootstrap's .text-muted, whose !important would win)
+           so this text stays pure white and readable on the dark theme. */
+        .profile-muted { color: #ffffff; }
 
         .donation-status {
             margin-top: 20px;
@@ -593,7 +595,7 @@
             text-align: center;
             font-size: 13px;
             font-weight: 600;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.85);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -615,7 +617,8 @@
             justify-content: center;
             gap: 10px;
             padding: 14px 24px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            /* darker end-stop: white label stays ≥4.5:1 on the whole button */
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
             color: #fff;
             text-decoration: none;
             border-radius: var(--radius);
@@ -642,7 +645,7 @@
             padding: 12px 24px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            color: rgba(255,255,255,0.6);
+            color: rgba(255,255,255,0.85);
             text-decoration: none;
             border-radius: var(--radius);
             font-size: 14px;
@@ -700,7 +703,7 @@
         }
 
         .profile-footer .brand-tagline {
-            display: block; font-size: 12px; color: rgba(255,255,255,0.4);
+            display: block; font-size: 12px; color: rgba(255,255,255,0.7);
         }
 
         .profile-footer .footer-links {
@@ -712,7 +715,7 @@
         .profile-footer .footer-links-col h6,
         .profile-footer .footer-social h6 {
             font-size: 11px; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.2px; color: rgba(255,255,255,0.3); margin-bottom: 12px;
+            letter-spacing: 1.2px; color: rgba(255,255,255,0.7); margin-bottom: 12px;
         }
 
         .profile-footer .footer-links-col a {
@@ -759,12 +762,19 @@
 
         .profile-footer .footer-bottom p {
             font-size: 12px;
-            color: rgba(255,255,255,0.3);
+            color: rgba(255,255,255,0.7);
         }
 
         .profile-footer .dev-name {
             font-weight: 800;
-            background: linear-gradient(135deg, var(--primary-light), #f97316);
+            background: linear-gradient(135deg, #f87171, #fb923c);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .light-mode .profile-footer .dev-name {
+            background: linear-gradient(135deg, #b91c1c, #c2410c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -885,8 +895,8 @@
             color: #1f2937;
         }
 
-        .light-mode .text-muted {
-            color: rgba(0, 0, 0, 0.35);
+        .light-mode .profile-muted {
+            color: rgba(0, 0, 0, 0.6);
         }
 
         .light-mode .donation-status {
