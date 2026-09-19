@@ -57,11 +57,13 @@ class Profile extends Model
         $next = $this->nextDonationDate();
 
         if ($next) {
-            $diff = Carbon::now()->diffInDays($next, false);
-            return $diff > 0 ? $diff : 0; 
+            // Carbon 3 returns a float here (e.g. 56.775374895313); cast it so
+            // every caller gets a clean whole number of days.
+            $diff = (int) ceil(Carbon::now()->diffInDays($next, false));
+            return $diff > 0 ? $diff : 0;
         }
 
-        return 0; 
+        return 0;
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 use App\Models\Profile;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -165,7 +166,41 @@ class DonorController extends Controller
     {
         $donors = Profile::whereNotNull('blood')->orderBy('id','desc')->get();
         $pdf = Pdf::loadView('backend.donor_list.pdf', compact('donors'));
+        $this->registerBengaliFont($pdf);
         return $pdf->download('donor-list-' . date('Y-m-d') . '.pdf');
+    }
+
+    /**
+     * DomPDF ships no Bengali font, so Bangla names render blank in the PDF.
+     * Register the bundled Hind Siliguri TTF (same family the site uses) before
+     * the document is rendered.
+     */
+    private function registerBengaliFont($pdf): void
+    {
+        $dompdf = $pdf->getDomPDF();
+        $fontMetrics = $dompdf->getFontMetrics();
+
+        // DomPDF caches parsed fonts here but expects the folder to exist.
+        File::ensureDirectoryExists($dompdf->getOptions()->getFontDir());
+
+        $faces = [
+            ['file' => 'HindSiliguri-Regular.ttf', 'weight' => 'normal'],
+            ['file' => 'HindSiliguri-Bold.ttf', 'weight' => 'bold'],
+        ];
+
+        foreach ($faces as $face) {
+            $path = public_path('fonts/' . $face['file']);
+
+            if (!is_file($path)) {
+                continue;
+            }
+
+            $fontMetrics->registerFont([
+                'family' => 'Hind Siliguri',
+                'style'  => 'normal',
+                'weight' => $face['weight'],
+            ], 'file://' . str_replace('\\', '/', $path));
+        }
     }
 
     // ==============================

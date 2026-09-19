@@ -6,7 +6,9 @@
     <style>
         @page { margin: 20px 30px; }
         body {
-            font-family: 'DejaVu Sans', sans-serif;
+            /* Hind Siliguri carries both Latin and Bengali glyphs. It has to be
+               first here: DomPDF does not fall back per glyph. */
+            font-family: 'Hind Siliguri', 'DejaVu Sans', sans-serif;
             font-size: 11px;
             color: #333;
             padding: 0;
@@ -35,6 +37,12 @@
             display: block;
             margin-bottom: 4px;
         }
+        .header .rule {
+            width: 54px;
+            height: 5px;
+            background-color: #dc3545;
+            margin: 8px auto 0;
+        }
         .summary {
             display: flex;
             justify-content: space-between;
@@ -48,11 +56,14 @@
         .summary strong { color: #333; }
         table {
             width: 100%;
+            table-layout: fixed;
             border-collapse: collapse;
             margin-bottom: 10px;
         }
         th {
-            background: linear-gradient(135deg, #dc3545, #e35e6f);
+            /* solid colour: DomPDF cannot render linear-gradient, and the white
+               label ended up invisible on the white page background */
+            background-color: #dc3545;
             color: #fff;
             padding: 9px 8px;
             font-size: 10px;
@@ -68,6 +79,7 @@
             border-bottom: 1px solid #eee;
             font-size: 10px;
             color: #444;
+            word-wrap: break-word;
         }
         tr:nth-child(even) td {
             background: #fafafa;
@@ -81,16 +93,19 @@
             font-size: 9px;
             font-weight: 700;
             color: #fff;
+            white-space: nowrap;
         }
         .status-eligible {
             color: #16a34a;
             font-weight: 700;
             font-size: 9px;
+            white-space: nowrap;
         }
         .status-noteligible {
             color: #dc2626;
             font-weight: 600;
             font-size: 9px;
+            white-space: nowrap;
         }
         .footer {
             text-align: center;
@@ -105,8 +120,8 @@
 </head>
 <body>
     <div class="header">
-        <span class="drop">🩸</span>
         <h1>Blood Bank - Donor List</h1>
+        <div class="rule"></div>
         <p>Generated on {{ now()->timezone('Asia/Dhaka')->format('d F Y, h:i A') }}</p>
     </div>
 
@@ -118,13 +133,13 @@
     <table>
         <thead>
             <tr>
-                <th style="width:30px;">#</th>
-                <th>Name</th>
-                <th>Phone</th>
-                <th style="width:70px;text-align:center;">Blood</th>
-                <th>Division</th>
-                <th>Last Donation</th>
-                <th style="width:75px;">Status</th>
+                <th style="width:5%;">#</th>
+                <th style="width:19%;">Name</th>
+                <th style="width:15%;">Phone</th>
+                <th style="width:9%;text-align:center;">Blood</th>
+                <th style="width:14%;">Division</th>
+                <th style="width:19%;">Last Donation</th>
+                <th style="width:19%;white-space:nowrap;">Status</th>
             </tr>
         </thead>
         <tbody>
@@ -150,9 +165,9 @@
                 <td>{{ $donor->last_donated ? $donor->last_donated->format('d M Y') : 'N/A' }}</td>
                 <td>
                     @if($donor->canDonateNow())
-                        <span class="status-eligible">✓ Eligible</span>
+                        <span class="status-eligible">Eligible</span>
                     @else
-                        <span class="status-noteligible">✗ {{ $donor->daysUntilNextDonation() }} days</span>
+                        <span class="status-noteligible">After {{ $donor->daysUntilNextDonation() }} days</span>
                     @endif
                 </td>
             </tr>
