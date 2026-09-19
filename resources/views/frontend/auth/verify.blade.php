@@ -1,5 +1,20 @@
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#0f0f1a">
+    <title>{{ __('ইমেইল ভেরিফিকেশন') }} — {{ __('ব্লাড ব্যাংক') }}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+</head>
+
+<body>
 
 <div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#0f0f1a 0%,#1a0a0a 50%,#0d0d1a 100%);position:relative;overflow:hidden;padding:24px 16px;font-family:'Poppins','Hind Siliguri',sans-serif;">
 
@@ -133,8 +148,6 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Hind+Siliguri:wght@300;400;500;600;700&display=swap');
-
 @keyframes orbPulse {
     0%, 100% { transform: translateX(-50%) scale(1); opacity: 0.7; }
     50% { transform: translateX(-50%) scale(1.12); opacity: 1; }
@@ -198,4 +211,44 @@ body { margin: 0; }
     div[style*="padding:32px"] { padding-left: 20px !important; padding-right: 20px !important; }
     div[style*="padding:12px 32px"] { padding-left: 20px !important; padding-right: 20px !important; }
 }
+
+/* ===== MOBILE ===== */
+@media (max-width: 575.98px) {
+    html { -webkit-text-size-adjust: 100%; }
+    /* 16px stops iOS Safari from zooming the page when a field gets focus */
+    input, select, textarea { font-size: 16px !important; }
+    /* shell — no scrolling on phones */
+    div[style*="min-height:100vh"] { min-height: 100svh !important; padding: 10px 14px !important; }
+
+    /* brand */
+    div[style*="margin-bottom:24px"] { margin-bottom: 10px !important; }
+    div[style*="width:56px;height:56px"] { width: 42px !important; height: 42px !important; border-radius: 12px !important; margin-bottom: 8px !important; }
+    div[style*="font-size:22px;font-weight:800"] { font-size: 18px !important; }
+    div[style*="letter-spacing:2px"] { font-size: 10px !important; letter-spacing: 1.2px !important; margin-top: 1px !important; }
+
+    /* card: header / body / bottom strip */
+    div[style*="padding:28px 32px 20px"] { padding: 13px 18px 9px !important; }
+    div[style*="padding:26px 32px"] { padding: 13px 18px !important; }
+    div[style*="padding:28px 32px 24px"] { padding: 13px 18px !important; }
+    div[style*="padding:32px"] { padding: 15px 18px !important; }
+    div[style*="padding:12px 32px"] { padding: 8px 18px !important; }
+    div[style*="padding:10px 32px"] { padding: 7px 18px !important; }
+    span[style*="width:36px;height:36px"] { width: 31px !important; height: 31px !important; }
+    span[style*="font-size:17px;font-weight:700;color:#fff"] { font-size: 15.5px !important; }
+    p[style*="font-size:12.5px"] { font-size: 11.5px !important; margin-top: 2px !important; }
+    div[style*="width:72px;height:72px"] { width: 60px !important; height: 60px !important; margin-bottom: 14px !important; }
+
+    /* fields */
+    div[style*="margin-bottom:18px"] { margin-bottom: 11px !important; }
+    div[style*="margin-bottom:16px"] { margin-bottom: 10px !important; }
+    label[style*="margin-bottom:7px"] { margin-bottom: 5px !important; }
+    input[style*="padding:12px"] { padding-top: 10px !important; padding-bottom: 10px !important; }
+    button[style*="padding:13px"] { padding: 11px !important; }
+
+    /* credit line */
+    div[style*="margin-top:18px"], div[style*="margin-top:22px"], div[style*="margin-top:24px"] { margin-top: 10px !important; }
+}
 </style>
+
+</body>
+</html>

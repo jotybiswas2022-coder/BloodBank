@@ -11,7 +11,7 @@ class LanguageController extends Controller
     public function switch($locale)
     {
         if (!in_array($locale, ['en', 'bn'])) {
-            $locale = 'en';
+            $locale = config('app.locale');
         }
 
         session(['locale' => $locale]);
