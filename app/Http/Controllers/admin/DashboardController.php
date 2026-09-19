@@ -13,8 +13,9 @@ use Carbon\Carbon;
 class DashboardController extends Controller
 {
     public function index(){
-        // Fetch counts
-        $donorsCount = Profile::count();
+        // Fetch counts. A donor is a profile with a blood group, which is the
+        // same set the Donor List page shows.
+        $donorsCount = Profile::whereNotNull('blood')->count();
 
         // ===== Blood Group Distribution =====
         $bloodGroups = ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'];
@@ -40,16 +41,15 @@ class DashboardController extends Controller
         $totalRequests = BloodRequest::count();
 
         // ===== Eligible Donors =====
-        $eligibleDonors = 0;
-        $allProfiles = Profile::whereNotNull('last_donated')->get();
-        foreach ($allProfiles as $profile) {
-            if ($profile->canDonateNow()) {
-                $eligibleDonors++;
-            }
-        }
-        // Add donors who never donated (always eligible)
-        $neverDonated = Profile::whereNull('last_donated')->count();
-        $eligibleDonors += $neverDonated;
+        // Same donor set as above, counted in SQL: never donated, or the last
+        // donation was at least 90 days ago (see Profile::canDonateNow()).
+        $eligibleCutoff = Carbon::now()->subDays(90);
+        $eligibleDonors = Profile::whereNotNull('blood')
+            ->where(function ($query) use ($eligibleCutoff) {
+                $query->whereNull('last_donated')
+                      ->orWhere('last_donated', '<=', $eligibleCutoff);
+            })
+            ->count();
 
         // ===== Urgency Breakdown =====
         $criticalRequests = BloodRequest::where('urgency', 'critical')->whereIn('status', ['pending', 'matched'])->count();
